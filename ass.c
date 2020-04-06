@@ -50,7 +50,7 @@ void stmt();
 			getChar();
 			do {
 				lex();
-				expr();
+				stmt();
 			} while (nextToken != EOF);
 		}
 		return 0;
@@ -254,5 +254,9 @@ void error(){
 // <stmt> -> id = <expr>
 
 void stmt(){
-	
+	printf("Enter <stmt>\n");
+	lex();
+	lex();
+	expr();
+	printf("Exit <stmt>\n");
 }
