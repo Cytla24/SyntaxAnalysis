@@ -25,6 +25,7 @@ void stmt();
 #define LETTER 0
 #define DIGIT 1
 #define UNKNOWN 99
+#define ENTER 101
 
 /* Token codes */
 #define INT_LIT 10
@@ -50,8 +51,8 @@ void stmt();
 			getChar();
 			do {
 				lex();
-				stmt();
-			} while (nextToken != EOF);
+				// stmt();
+			} while (nextToken != ENTER);
 		}
 		return 0;
 	}
@@ -113,21 +114,31 @@ void addChar() {
  input and determine its character class */
 void getChar() {
  if ((nextChar = getc(in_fp)) != EOF) {
- if (isalpha(nextChar))
+ if (isalpha(nextChar)){
  charClass = LETTER;
+	}
  else if (isdigit(nextChar))
- charClass = DIGIT;
- else charClass = UNKNOWN;
+ {
+ 	charClass = DIGIT;
  }
- else
+ else if (nextChar == '\n')
+ {
+ 	charClass = ENTER;
+ }
+ else {
+ 	charClass = UNKNOWN;
+ }
+ }
+ else{
  charClass = EOF;
+ }
 }
 
 /*****************************************************/
 /* getNonBlank - a function to call getChar until it
  returns a non-whitespace character */
 void getNonBlank() {
- while (isspace(nextChar))
+ while (isspace(nextChar)&& nextChar != '\n')
  getChar();
 }
 
@@ -162,6 +173,15 @@ int lex() {
  case UNKNOWN:
  lookup(nextChar);
  getChar();
+ break;
+
+/* ENTER */
+ case ENTER:
+ nextToken = ENTER;
+ lexeme[0] = 'E';
+ lexeme[1] = 'O';
+ lexeme[2] = 'F';
+ lexeme[3] = 0;
  break;
 
 /* EOF */
