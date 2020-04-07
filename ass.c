@@ -8,8 +8,7 @@ char nextChar;
 int lexLen;
 int token;
 int nextToken;
-int iserror;
-iserror = 0;
+int iserror = 0;
 FILE *in_fp, *fopen();
 
 /* Function declarations */
@@ -251,6 +250,9 @@ void expr() {
  lex();
  term();
  }
+ if (iserror != 0){
+ 	return;
+ }
  printf("Exit <expr>\n");
 } /* End of function expr */
 
@@ -308,7 +310,7 @@ void factor() {
 } /* End of function factor */
 
 void error(){
-	printf("Error");
+	printf("Error\n");
 	iserror = 1;
 }
 
@@ -321,5 +323,8 @@ void stmt(){
 	lex();
 	lex();
 	expr();
+	if (iserror != 0){
+ 	return;
+ }
 	printf("Exit <stmt>\n");
 }
