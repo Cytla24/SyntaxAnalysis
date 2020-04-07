@@ -8,7 +8,7 @@ char nextChar;
 int lexLen;
 int token;
 int nextToken;
-int iserror = 0;
+int iserror=0;
 FILE *in_fp, *fopen();
 
 /* Function declarations */
@@ -53,17 +53,21 @@ void stmt();
 			do{
 			lex();
 			do {
-				
+				iserror = 0;
 				stmt();
+				printf("%d\n", nextToken);
 				printf("%d\n", charClass);
 				printf("prev\n");
+				if (iserror != 0){
+					break;
+				}
 
 			} while (nextToken != EOF);
 			getChar();
 			printf("%d\n", charClass);
 				printf("now\n");
 			if (charClass != EOF){
-				lex();
+				// lex();
 				printf("%d\n", charClass);
 				// do{
 				// printf("here\n");
@@ -252,7 +256,7 @@ void expr() {
  }
  if (iserror != 0){
  	return;
- }
+	}
  printf("Exit <expr>\n");
 } /* End of function expr */
 
@@ -272,7 +276,7 @@ void term() {
  }
  if (iserror != 0){
  	return;
- }
+	}
  printf("Exit <term>\n");
 } /* End of function term */
 
@@ -302,10 +306,10 @@ void factor() {
  parenthesis */
  else
  error();
+ } /* End of else */
  if (iserror != 0){
  	return;
- }
- } /* End of else */
+	}
  printf("Exit <factor>\n");;
 } /* End of function factor */
 
@@ -323,8 +327,22 @@ void stmt(){
 	lex();
 	lex();
 	expr();
+	if (nextToken != -1){
+		error();
+		while(charClass != 101){
+			getChar();
+			printf("%d\n", charClass);
+			if (charClass == -1){
+				break;
+			}
+		}
+	}
+	printf("inside stmt\n");
+	printf("%d\n",charClass );
+	printf("%d\n", nextToken);
+	printf("%d\n", iserror);
 	if (iserror != 0){
  	return;
- }
+	}
 	printf("Exit <stmt>\n");
 }
