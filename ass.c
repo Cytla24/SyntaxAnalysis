@@ -8,6 +8,7 @@ char nextChar;
 int lexLen;
 int token;
 int nextToken;
+int iserror;
 FILE *in_fp, *fopen();
 
 /* Function declarations */
@@ -49,26 +50,44 @@ void stmt();
 		printf("ERROR - cannot open front.in \n");
 		else {
 			getChar();
-			lex();
 			do{
+			lex();
 			do {
 				
 				stmt();
+				printf("%d\n", charClass);
+				printf("prev\n");
 
 			} while (nextToken != EOF);
 			getChar();
+			printf("%d\n", charClass);
+				printf("now\n");
 			if (charClass != EOF){
-				do{
-				printf("here\n");
 				lex();
-				}while(isspace(nextChar)&& nextChar != '\n');
+				printf("%d\n", charClass);
+				// do{
+				// printf("here\n");
+				// getChar();
+				// }while(charClass == ENTER);
+				while(charClass == ENTER){
+					printf("here\n");
+					getChar();
+				}
+				printf("%d\n", charClass);
+				printf("after\n");
 			}
 			
+			printf("why\n");
+			printf("%d\n", nextToken);
+			printf("%d\n", charClass );
 			// stmt();
 			// if (nextToken == EOF){
 			// 	break;
 			// }
-			} while (nextToken != EOF);
+			if (nextToken == EOF && charClass == -1){
+				break;
+			}
+			} while (1==1);
 		}
 		return 0;
 	}
@@ -277,12 +296,14 @@ void factor() {
  parenthesis */
  else
  error();
+ if (iserror )
  } /* End of else */
  printf("Exit <factor>\n");;
 } /* End of function factor */
 
 void error(){
-	printf("error");
+	printf("Error");
+	iserror = 1;
 }
 
 // stmt
