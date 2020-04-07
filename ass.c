@@ -49,10 +49,26 @@ void stmt();
 		printf("ERROR - cannot open front.in \n");
 		else {
 			getChar();
+			lex();
+			do{
 			do {
+				
+				stmt();
+
+			} while (nextToken != EOF);
+			getChar();
+			if (charClass != EOF){
+				do{
+				printf("here\n");
 				lex();
-				// stmt();
-			} while (nextToken != ENTER);
+				}while(isspace(nextChar)&& nextChar != '\n');
+			}
+			
+			// stmt();
+			// if (nextToken == EOF){
+			// 	break;
+			// }
+			} while (nextToken != EOF);
 		}
 		return 0;
 	}
@@ -177,7 +193,7 @@ int lex() {
 
 /* ENTER */
  case ENTER:
- nextToken = ENTER;
+ nextToken = EOF;
  lexeme[0] = 'E';
  lexeme[1] = 'O';
  lexeme[2] = 'F';
