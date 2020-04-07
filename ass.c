@@ -336,7 +336,10 @@ void stmt(){
 	getNonBlank();
 	// printf("%d\n",nextToken );
 	// printf("%d\n",charClass );
-	if (charClass = -1){
+	lex();
+	// printf("%d\n",nextToken );
+	// printf("%d\n",charClass );
+	if (charClass == -1 || nextToken != 20){
 		error();
 		while(charClass != 101){
 			// printf("testing\n");
@@ -348,9 +351,6 @@ void stmt(){
 		}
 		return;
 	}
-	lex();
-	// printf("%d\n",nextToken );
-	// printf("%d\n",charClass );
 	getNonBlank();
 	lex();
 	expr();
