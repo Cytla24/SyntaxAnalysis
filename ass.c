@@ -55,39 +55,30 @@ void stmt();
 			do {
 				iserror = 0;
 				stmt();
-				printf("%d\n", nextToken);
-				printf("%d\n", charClass);
-				printf("prev\n");
+				// printf("%d\n", nextToken);
+				// printf("%d\n", charClass);
+				// printf("prev\n");
 				if (iserror != 0){
 					break;
 				}
 
 			} while (nextToken != EOF);
 			getChar();
-			printf("%d\n", charClass);
-				printf("now\n");
+			// printf("%d\n", charClass);
+				// printf("now\n");
 			if (charClass != EOF){
-				// lex();
-				printf("%d\n", charClass);
-				// do{
-				// printf("here\n");
-				// getChar();
-				// }while(charClass == ENTER);
+				// printf("%d\n", charClass);
 				while(charClass == ENTER){
-					printf("here\n");
+					// printf("here\n");
 					getChar();
 				}
-				printf("%d\n", charClass);
-				printf("after\n");
+				// printf("%d\n", charClass);
+				// printf("after\n");
 			}
 			
-			printf("why\n");
-			printf("%d\n", nextToken);
-			printf("%d\n", charClass );
-			// stmt();
-			// if (nextToken == EOF){
-			// 	break;
-			// }
+			// printf("why\n");
+			// printf("%d\n", nextToken);
+			// printf("%d\n", charClass );
 			if (nextToken == EOF && charClass == -1){
 				break;
 			}
@@ -328,14 +319,29 @@ void error(){
 void stmt(){
 	printf("Enter <stmt>\n");
 
-	printf("%d\n",charClass );
-	printf("%d\n",nextToken );
+	// printf("%d\n",charClass );
+	// printf("%d\n",nextToken );
 	if (nextToken != 11){
 		error();
 		while(charClass != 101){
-			printf("testing\n");
+			// printf("testing\n");
 			getChar();
-			printf("%d\n", charClass);
+			// printf("%d\n", charClass);
+			if (charClass == -1){
+				break;
+			}
+		}
+		return;
+	}
+	getNonBlank();
+	// printf("%d\n",nextToken );
+	// printf("%d\n",charClass );
+	if (charClass = -1){
+		error();
+		while(charClass != 101){
+			// printf("testing\n");
+			getChar();
+			// printf("%d\n", charClass);
 			if (charClass == -1){
 				break;
 			}
@@ -343,22 +349,28 @@ void stmt(){
 		return;
 	}
 	lex();
+	// printf("%d\n",nextToken );
+	// printf("%d\n",charClass );
+	getNonBlank();
 	lex();
 	expr();
+	if (iserror != 0){
+ 	return;
+	}
 	if (nextToken != -1){
 		error();
 		while(charClass != 101){
 			getChar();
-			printf("%d\n", charClass);
+			// printf("%d\n", charClass);
 			if (charClass == -1){
 				break;
 			}
 		}
 	}
-	printf("inside stmt\n");
-	printf("%d\n",charClass );
-	printf("%d\n", nextToken);
-	printf("%d\n", iserror);
+	// printf("inside stmt\n");
+	// printf("%d\n",charClass );
+	// printf("%d\n", nextToken);
+	// printf("%d\n", iserror);
 	if (iserror != 0){
  	return;
 	}
