@@ -91,6 +91,9 @@ void stmt();
 			if (nextToken == EOF && charClass == -1){
 				break;
 			}
+			if (iserror != 0 && charClass == -1){
+				break;
+			}
 			} while (1==1);
 		}
 		return 0;
@@ -324,6 +327,21 @@ void error(){
 
 void stmt(){
 	printf("Enter <stmt>\n");
+
+	printf("%d\n",charClass );
+	printf("%d\n",nextToken );
+	if (nextToken != 11){
+		error();
+		while(charClass != 101){
+			printf("testing\n");
+			getChar();
+			printf("%d\n", charClass);
+			if (charClass == -1){
+				break;
+			}
+		}
+		return;
+	}
 	lex();
 	lex();
 	expr();
