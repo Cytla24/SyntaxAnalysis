@@ -15,6 +15,7 @@ FILE *in_fp, *fopen();
 void addChar();
 void getChar();
 void getNonBlank();
+void getNonBlankEnt();
 int lex();
 void term();
 void expr();
@@ -51,7 +52,16 @@ void stmt();
 		else {
 			getChar();
 			do{
+			getNonBlankEnt();
 			lex();
+			printf("%d\n", nextToken);
+			printf("%d\n", charClass);
+			if (nextToken == -1 && charClass == -1){
+				error();
+				break;
+			}
+			// printf("%d\n", nextToken);
+			// printf("%d\n", charClass);
 			do {
 				iserror = 0;
 				stmt();
@@ -172,6 +182,11 @@ void getChar() {
  returns a non-whitespace character */
 void getNonBlank() {
  while (isspace(nextChar)&& nextChar != '\n')
+ getChar();
+}
+
+void getNonBlankEnt() {
+ while (isspace(nextChar))
  getChar();
 }
 
