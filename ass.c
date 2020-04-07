@@ -9,6 +9,7 @@ int lexLen;
 int token;
 int nextToken;
 int iserror;
+iserror = 0;
 FILE *in_fp, *fopen();
 
 /* Function declarations */
@@ -267,6 +268,9 @@ void term() {
  lex();
  factor();
  }
+ if (iserror != 0){
+ 	return;
+ }
  printf("Exit <term>\n");
 } /* End of function term */
 
@@ -296,7 +300,9 @@ void factor() {
  parenthesis */
  else
  error();
- if (iserror )
+ if (iserror != 0){
+ 	return;
+ }
  } /* End of else */
  printf("Exit <factor>\n");;
 } /* End of function factor */
