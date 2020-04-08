@@ -377,9 +377,9 @@ void stmt(){
 	if (iserror != 0){
  	return;
 	}
-	printf("%s\n",lexeme );
-	printf("%d\n",nextToken );
-	printf("%d\n",charClass );
+	// printf("%s\n",lexeme );
+	// printf("%d\n",nextToken );
+	// printf("%d\n",charClass );
 	if (nextToken != -1 || (nextToken == -1 && charClass != -1 && charClass != 101 ) || (nextToken == -1 && strcmp(lexeme, "EOF"))){
 		error();
 		while(charClass != 101){
