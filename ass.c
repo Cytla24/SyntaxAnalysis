@@ -372,6 +372,13 @@ void stmt(){
 	lex();
 	expr();
 	if (iserror != 0){
+		while(charClass != 101){
+			getChar();
+			// printf("%d\n", charClass);
+			if (charClass == -1){
+				break;
+			}
+		}
  	return;
 	}
 	// printf("%s\n",lexeme );
