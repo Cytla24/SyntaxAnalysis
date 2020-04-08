@@ -243,6 +243,8 @@ int lex() {
  } 
 
  /* End of switch */
+ // printf("%d\n", nextToken );
+ // printf("%d\n",charClass );
  printf("Next token is: %d, Next lexeme is %s\n",
  nextToken, lexeme);
  return nextToken;
@@ -372,7 +374,7 @@ void stmt(){
 	if (iserror != 0){
  	return;
 	}
-	if (nextToken != -1){
+	if (nextToken != -1 || (nextToken == -1 && charClass != -1)){
 		error();
 		while(charClass != 101){
 			getChar();
