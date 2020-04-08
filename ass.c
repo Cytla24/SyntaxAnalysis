@@ -54,8 +54,8 @@ void stmt();
 			do{
 			getNonBlankEnt();
 			lex();
-			printf("%d\n", nextToken);
-			printf("%d\n", charClass);
+			// printf("%d\n", nextToken);
+			// printf("%d\n", charClass);
 			if (nextToken == -1 && charClass == -1){
 				error();
 				break;
