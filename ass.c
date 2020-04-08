@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
 /* Global declarations */
 /* Variables */
@@ -29,6 +30,7 @@ void stmt();
 #define UNKNOWN 99
 #define ENTER 101
 
+
 /* Token codes */
 #define INT_LIT 10
 #define IDENT 11
@@ -56,7 +58,7 @@ void stmt();
 			lex();
 			// printf("%d\n", nextToken);
 			// printf("%d\n", charClass);
-			if (nextToken == -1 && charClass == -1){
+			if (nextToken == -1 && charClass == -1 && !(strcmp(lexeme, "EOF"))){
 				error();
 				break;
 			}
@@ -243,6 +245,7 @@ int lex() {
  } 
 
  /* End of switch */
+ // printf("%s\n", lexeme );
  // printf("%d\n", nextToken );
  // printf("%d\n",charClass );
  printf("Next token is: %d, Next lexeme is %s\n",
@@ -374,7 +377,10 @@ void stmt(){
 	if (iserror != 0){
  	return;
 	}
-	if (nextToken != -1 || (nextToken == -1 && charClass != -1)){
+	printf("%s\n",lexeme );
+	printf("%d\n",nextToken );
+	printf("%d\n",charClass );
+	if (nextToken != -1 || (nextToken == -1 && charClass != -1 && charClass != 101 ) || (nextToken == -1 && strcmp(lexeme, "EOF"))){
 		error();
 		while(charClass != 101){
 			getChar();
