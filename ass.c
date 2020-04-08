@@ -54,17 +54,15 @@ void stmt();
 		else {
 			getChar();
 			do{
-			getNonBlankEnt();
+			getNonBlank();
+			// printf("here\n");
 			lex();
 			// printf("%d\n", nextToken);
 			// printf("%d\n", charClass);
-			if (nextToken == -1 && charClass == -1 && !(strcmp(lexeme, "EOF"))){
-				error();
+			do {
+			if (nextToken == -1 && charClass == 101){
 				break;
 			}
-			// printf("%d\n", nextToken);
-			// printf("%d\n", charClass);
-			do {
 				iserror = 0;
 				stmt();
 				// printf("%d\n", nextToken);
@@ -78,15 +76,15 @@ void stmt();
 			getChar();
 			// printf("%d\n", charClass);
 				// printf("now\n");
-			if (charClass != EOF){
-				// printf("%d\n", charClass);
-				while(charClass == ENTER){
-					// printf("here\n");
-					getChar();
-				}
-				// printf("%d\n", charClass);
-				// printf("after\n");
-			}
+			// if (charClass != EOF){
+			// 	// printf("%d\n", charClass);
+			// 	while(charClass == ENTER){
+			// 		// printf("here\n");
+			// 		getChar();
+			// 	}
+			// 	// printf("%d\n", charClass);
+			// 	// printf("after\n");
+			// }
 			
 			// printf("why\n");
 			// printf("%d\n", nextToken);
@@ -188,8 +186,7 @@ void getNonBlank() {
 }
 
 void getNonBlankEnt() {
- while (isspace(nextChar))
- getChar();
+	getNonBlank();
 }
 
 /*****************************************************/
